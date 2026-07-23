@@ -15,7 +15,7 @@ misc = {
 
 hl.monitor({
 	output = "DP-2",
-	mode = "2560x1440@144",
+	mode = "2560x1440@200",
 	scale = 1,
 })
 
