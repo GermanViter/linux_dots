@@ -27,5 +27,5 @@ return {
     -- Misc
     kbTerminal                 = "SUPER + Q",
     kbLock                     = "SUPER + SHIFT + Q",
-    kbShowPanels               = "SUPER + SHIFT + K",
+	kbShowPanels = "SUPER + G",
 }
