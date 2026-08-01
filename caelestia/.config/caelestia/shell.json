@@ -69,7 +69,7 @@
                     "inhibitWhenAudio": false,
                     "inhibitWhenCharging": false,
                     "respectInhibitors": true,
-                    "timeout": 300
+                    "timeout": 600
                 }
             ]
         }
