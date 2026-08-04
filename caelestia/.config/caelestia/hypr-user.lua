@@ -7,6 +7,7 @@ hl.env("XCURSOR_SIZE", "30")
 hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 30")
 	hl.exec_cmd("hyprctl reload")
+	hl.exec_cmd("nm-applet --indicator")
 end)
 
 misc = {
