@@ -60,6 +60,14 @@
         "showDashboard": true
     },
     "general": {
+        "apps": {
+            "explorer": [
+                "dolphin"
+            ],
+            "terminal": [
+                "kitty"
+            ]
+        },
         "idle": {
             "inhibitWhenAudio": true,
             "lockBeforeSleep": true,
