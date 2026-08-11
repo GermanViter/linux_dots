@@ -21,3 +21,4 @@ nvim-pack-lock.json
 # Local/Private overrides
 .zshrc.local
 .Brewfile.local
+zed/
