@@ -74,6 +74,7 @@ fi
 
 # --- Tmux ---
 alias tms='tmux attach-session -t $1'
+DISABLE_AUTO_TITLE=true
 
 # --- AI & Sync Tools ---
 alias claude='ollama launch claude --model gemma4:31b-cloud'
