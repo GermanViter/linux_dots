@@ -32,4 +32,5 @@ hl.bind("SUPER + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
 
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("pkill Hyprland"))
 
+hl.window_rule({ match = { class = "brave-browser", fullscreen = false }, opacity = "0.8 override" })
 hl.window_rule({ match = { class = "brave-browser" }, opacity = "0.8 override" })
