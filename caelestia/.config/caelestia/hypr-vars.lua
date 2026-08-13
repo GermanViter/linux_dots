@@ -28,4 +28,6 @@ return {
     kbTerminal                 = "SUPER + Q",
     kbLock                     = "SUPER + SHIFT + Q",
 	kbShowPanels = "SUPER + G",
+
+	blurSize = 4,
 }
