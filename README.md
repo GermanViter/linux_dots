@@ -99,9 +99,9 @@ The `scripts/switch-theme.sh` script allows you to quickly switch between differ
 
 The `scripts/setup_symlinks.sh` script is a wrapper around `stow`:
 
-1. **Modular Packages**: Each top-level directory (e.g., `nvim`, `zsh`) is treated as a "stow package".
+1. **Modular Packages**: Top-level package directories (e.g., `nvim`, `tmux`) as well as sub-packages inside `combined_dots/` (e.g., `zsh`, `kitty`, `fastfetch`, `starship`) are automatically detected and treated as "stow packages".
 2. **Mirroring**: Stow mirrors the internal structure of these directories into your `$HOME`.
-   - `zsh/.zshrc` becomes `~/.zshrc`
+   - `combined_dots/zsh/.zshrc` becomes `~/.zshrc`
    - `nvim/.config/nvim/` becomes `~/.config/nvim/`
 3. **Safety**: Stow will not overwrite existing real files. It only creates symlinks. If a file already exists, it will report a conflict.
 

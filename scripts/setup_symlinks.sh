@@ -64,7 +64,7 @@ fi
 
 # ── Stow Packages ─────────────────────────────────────────────────────────────
 # Packages to exclude (not meant for stowing)
-EXCLUDE=("scripts" "assets" "gemini")
+EXCLUDE=("scripts" "assets" "gemini" "combined_dots")
 
 cd "$DOTFILES_DIR"
 
@@ -77,6 +77,19 @@ for dir in */; do
     packages+=("$dir")
 done
 
+# Collect combined_dots packages if directory exists
+combined_packages=()
+if [ -d "$DOTFILES_DIR/combined_dots" ]; then
+    for dir in combined_dots/*/; do
+        [ -d "$dir" ] || continue
+        dir=${dir#combined_dots/}
+        dir=${dir%/}
+        [[ " ${EXCLUDE[@]} " =~ " ${dir} " ]] && continue
+        [[ "$dir" == .* ]] && continue
+        combined_packages+=("$dir")
+    done
+fi
+
 STOW_FLAGS="-v -t $HOME"
 if [ "$DRY_RUN" = true ]; then
     STOW_FLAGS+=" -n"
@@ -84,12 +97,29 @@ fi
 
 if [ "$UNLINK" = true ]; then
     STOW_FLAGS+=" -D"
-    echo -e "${BLUE}Packages to unstow:${RESET} ${packages[*]}\n"
+    echo -e "${BLUE}Root packages to unstow:${RESET} ${packages[*]:-none}"
+    if [ -d "$DOTFILES_DIR/combined_dots" ]; then
+        if [ ${#combined_packages[@]} -gt 0 ]; then
+            echo -e "${BLUE}Combined packages to unstow:${RESET} ${combined_packages[*]}"
+        else
+            log_info "No packages found in combined_dots/ (run 'git submodule update --init --recursive' if needed)"
+        fi
+    fi
+    echo ""
 else
     STOW_FLAGS+=" -S"
-    echo -e "${BLUE}Packages to stow:${RESET} ${packages[*]}\n"
+    echo -e "${BLUE}Root packages to stow:${RESET} ${packages[*]:-none}"
+    if [ -d "$DOTFILES_DIR/combined_dots" ]; then
+        if [ ${#combined_packages[@]} -gt 0 ]; then
+            echo -e "${BLUE}Combined packages to stow:${RESET} ${combined_packages[*]}"
+        else
+            log_info "No packages found in combined_dots/ (run 'git submodule update --init --recursive' if needed)"
+        fi
+    fi
+    echo ""
 fi
 
+# Stow root packages
 for pkg in "${packages[@]}"; do
     if [ "$UNLINK" = true ]; then
         stow $STOW_FLAGS "$pkg" || log_error "Failed to unstow $pkg"
@@ -99,6 +129,17 @@ for pkg in "${packages[@]}"; do
         stow $STOW_FLAGS "$pkg" || log_error "Failed to stow $pkg. Check for existing files."
     fi
 done
+
+# Stow combined_dots packages
+if [ ${#combined_packages[@]} -gt 0 ]; then
+    for pkg in "${combined_packages[@]}"; do
+        if [ "$UNLINK" = true ]; then
+            stow -d combined_dots $STOW_FLAGS "$pkg" || log_error "Failed to unstow combined_dots/$pkg"
+        else
+            stow -d combined_dots $STOW_FLAGS "$pkg" || log_error "Failed to stow combined_dots/$pkg. Check for existing files."
+        fi
+    done
+fi
 
 echo ""
 if [ "$UNLINK" = true ]; then
