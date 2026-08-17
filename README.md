@@ -72,11 +72,11 @@ To apply these configurations to a new system:
 
 ## Theme Switcher
 
-The `scripts/switch-theme.sh` script allows you to quickly switch between different color schemes across multiple applications.
+The `combined_dots/scripts/switch-theme.sh` script allows you to quickly switch between different color schemes across multiple applications.
 
 ### Usage
 ```bash
-~/.dotfiles/scripts/switch-theme.sh [main|moon|dawn|catppuccin|black|gruvbox]
+~/.dotfiles/combined_dots/scripts/switch-theme.sh [main|moon|dawn|catppuccin|black|gruvbox]
 ```
 
 ### Supported Themes
@@ -97,12 +97,12 @@ The `scripts/switch-theme.sh` script allows you to quickly switch between differ
 
 ## How it Works
 
-The `scripts/setup_symlinks.sh` script is a wrapper around `stow`:
+The `combined_dots/scripts/setup_symlinks.sh` script is a wrapper around `stow`:
 
-1. **Modular Packages**: Top-level package directories (e.g., `nvim`, `tmux`) as well as sub-packages inside `combined_dots/` (e.g., `zsh`, `kitty`, `fastfetch`, `starship`) are automatically detected and treated as "stow packages".
+1. **Modular Packages**: Top-level package directories (e.g., `tmux`, `zed`, `caelestia`) as well as sub-packages inside `combined_dots/` (e.g., `zsh`, `kitty`, `fastfetch`, `starship`, `nvim`) are automatically detected and treated as "stow packages".
 2. **Mirroring**: Stow mirrors the internal structure of these directories into your `$HOME`.
    - `combined_dots/zsh/.zshrc` becomes `~/.zshrc`
-   - `nvim/.config/nvim/` becomes `~/.config/nvim/`
+   - `combined_dots/nvim/.config/nvim/` becomes `~/.config/nvim/`
 3. **Safety**: Stow will not overwrite existing real files. It only creates symlinks. If a file already exists, it will report a conflict.
 
 ## Updating configurations
@@ -113,13 +113,13 @@ To update your configurations after pulling new changes from the repository:
    ```
 2. Re-run the setup script to apply any new symlinks:
    ```bash
-   ~/.dotfiles/scripts/setup_symlinks.sh
+   ~/.dotfiles/combined_dots/scripts/setup_symlinks.sh
    ```
 
 ## Troubleshooting
 - If you can't run the script, ensure it has execute permissions:
   ```bash
-  chmod +x ~/.dotfiles/scripts/setup_symlinks.sh
+  chmod +x ~/.dotfiles/combined_dots/scripts/setup_symlinks.sh
   ```
 - If you encounter issues with symlinks, check the backup directory for any files that were moved.
 - For any application-specific issues, refer to the respective application's documentation or open an issue in this repository.
@@ -135,5 +135,5 @@ To add a new application to this repo:
    - If the config belongs in `~/.apprc`, create `app/.apprc`.
 3. **Run the setup script** to apply the changes:
    ```bash
-   ./scripts/setup_symlinks.sh
+   ./combined_dots/scripts/setup_symlinks.sh
    ```
