@@ -6,6 +6,11 @@ return {
     fileExplorer               = "dolphin",
     audioSettings              = "pavucontrol",
 
+
+    -- Launcher
+
+	kbLauncher = "SUPER + Space",
+
     -- Workspaces
     kbMoveWinToWs              = "SUPER + SHIFT",
     kbMoveWinToWsGroup         = "CTRL + SUPER + SHIFT",
@@ -21,7 +26,6 @@ return {
     kbPinWindow                = "SUPER + P",
     kbWindowFullscreen         = "SUPER + F",
     kbWindowBorderedFullscreen = "SUPER + ALT + F",
-    kbToggleWindowFloating     = "SUPER + space",
     kbCloseWindow              = "SUPER + C",
 
     -- Misc
