@@ -57,18 +57,27 @@ To apply these configurations to a new system:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/dotfiles.git ~/.dotfiles
+   git clone --recursive https://github.com/GermanViter/linux_dots.git ~/.dotfiles
+   cd ~/.dotfiles
    ```
 
-2. **Run the setup script:**
-   The script uses [GNU Stow](https://www.gnu.org/software/stow/) to manage symlinks. It will automatically detect packages in the repository and link them to your home directory.
+2. **Run the installer:**
+   The unified `install.sh` script automatically detects your package manager, installs missing dependencies (`stow`, `fzf`, `eza`, `bat`, `zoxide`, `starship`, `fastfetch`), and creates symlinks using [GNU Stow](https://www.gnu.org/software/stow/):
+   ```bash
+   ./install.sh
+   ```
 
 ### Script Options
 
-- `(no arguments)`: Creates symlinks using `stow`.
-- `--dry-run`: Simulates the process without making any changes.
-- `--unlink`: Removes the symlinks (unstow).
-- `--help`: Displays help information.
+- `(no arguments)`: Installs core dependencies and creates symlinks.
+- `-n, --dry-run`: Simulates the process without making any changes.
+- `-d, --deps-only`: Installs dependencies only (skips symlinking).
+- `-s, --symlinks-only`: Creates symlinks only.
+- `-u, --unlink`: Removes the symlinks (unstow).
+- `-a, --adopt`: Adopts existing target files into the repository during stowing.
+- `--all`: Installs full suite of tools (including Neovim, Kitty, Tmux, Git, Zsh).
+- `-c, --check`: Inspects status of dependencies and packages.
+- `-h, --help`: Displays help information.
 
 ## Theme Switcher
 
