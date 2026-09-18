@@ -58,7 +58,9 @@ To apply these configurations to a new system:
 1. **Clone the repository:**
    ```bash
    git clone --recursive https://github.com/GermanViter/linux_dots.git ~/.dotfiles
-   cd ~/.dotfiles
+   cd ~/.dotfiles/combined_dots/scripts
+   git pull origin main
+   chmod +x setup_symlinks.sh
    ```
 
 2. **Run the installer:**
@@ -71,6 +73,7 @@ To apply these configurations to a new system:
 
 - `(no arguments)`: Installs core dependencies and creates symlinks.
 - `-n, --dry-run`: Simulates the process without making any changes.
+- `--no-change-shell`: Do not change default login shell to zsh.
 - `-d, --deps-only`: Installs dependencies only (skips symlinking).
 - `-s, --symlinks-only`: Creates symlinks only.
 - `-u, --unlink`: Removes the symlinks (unstow).
