@@ -17,7 +17,8 @@ Personal configuration files and environment settings for Linux.
 ## Overview
 
 This repository uses a modular structure where each directory represents an application or tool. A central setup script manages the creation of symbolic links from the repository to your home directory and `~/.config` folder. It alse uses the [caelestia shell](https://github.com/caelestia-dots/caelestia) with hyprland which you can install by yourself.
-
+> [!WARNING]
+> Caelestia shell is mandatory for using these dotfiles if you are using hyprland. 
 ## Screenshots
 
 <ul align="center">
